@@ -1,0 +1,4 @@
+'both_positive-correct', (0, 70)
+'sum_digits-correct', (512, 70)
+'Control-correct', (1024, 70)
+'Veritasiness-correct', (1536, 70)
