@@ -7,20 +7,16 @@ test = {
         {
           'code': r"""
           >>> print("hi")
-          8f58112f9b6f3b582df45d024d3a6b11
-          # locked
+          hi
           >>> "hi"
-          324464a4cfaa4c209a2306339b9e0bef
-          # locked
+          'hi'
           >>> print(repr("hi"))
-          324464a4cfaa4c209a2306339b9e0bef
-          # locked
+          'hi'
           >>> repr("hi")
-          2d334acf947338d1c0d765d80caea7b1
-          # locked
+          "'hi'"
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
@@ -33,20 +29,16 @@ test = {
           ...     def __str__(self):
           ...         return self.x + self.x
           >>> A("hi")
-          8f58112f9b6f3b582df45d024d3a6b11
-          # locked
+          hi
           >>> print(A("hi"))
-          8f58112f9b6f3b582df45d024d3a6b11
-          # locked
+          hi
           >>> B("hi")
-          8f58112f9b6f3b582df45d024d3a6b11
-          # locked
+          hi
           >>> print(B("hi"))
-          bd193fbdf936023aeab9b670df1da295
-          # locked
+          hihi
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
@@ -58,28 +50,22 @@ test = {
           ...         print('hihihi')
           ...         return 'hihihihi'
           >>> C()
-          da90d5a8b22a8580274876a2f5d5c1fd
-          cc133c468842b554aa02e8f01f53411f
-          # locked
+          hihihi
+          hihihihi
           >>> print(C())
-          8f58112f9b6f3b582df45d024d3a6b11
-          bd193fbdf936023aeab9b670df1da295
-          # locked
+          hi
+          hihi
           >>> q = str(C())
-          8f58112f9b6f3b582df45d024d3a6b11
-          # locked
+          hi
           >>> q
-          2d70288e5ccd63ab6c1764a3ca347fbc
-          # locked
+          'hihi'
           >>> r = repr(C())
-          da90d5a8b22a8580274876a2f5d5c1fd
-          # locked
+          hihihi
           >>> r
-          3e72142409e95de3a26a8b5fa5cb7178
-          # locked
+          'hihihihi'
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         }
       ],
       'scored': False,
