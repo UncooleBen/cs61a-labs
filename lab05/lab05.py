@@ -121,3 +121,17 @@ def copy_tree(t):
     5
     """
     return tree(label(t), [copy_tree(b) for b in branches(t)])
+
+def count_ways(t, total):
+    def paths(s, remain):
+        print(label(s), remain)
+        ways = 0
+        if (remain-label(s)<0):
+            return 0
+        ways += sum([paths(sub, remain-label(s)) for sub in branches(s)])
+        if (is_leaf(s) and remain-label(s)==0):
+            ways += 1
+        return ways
+    return paths(t, total)
+
+t1 = tree(5, [tree(1, [tree(2, [tree(1)]),tree(1, [tree(4, [tree(2, [tree(2)])])])]),tree(3, [tree(2, [tree(2),tree(3)])]),tree(3, [tree(1, [tree(3)])])])
