@@ -16,6 +16,13 @@ def deep_len(lnk):
     5
     """
     "*** YOUR CODE HERE ***"
+    if (lnk is Link.empty):
+        return 0
+    elif (isinstance(lnk.first, Link)):
+        return deep_len(lnk.first) + deep_len(lnk.rest)
+    else:
+        return 1 + deep_len(lnk.rest)
+    
 
 def make_to_string(front, mid, back, empty_repr):
     """ Returns a function that turns linked lists to strings.
@@ -33,6 +40,12 @@ def make_to_string(front, mid, back, empty_repr):
     '()'
     """
     "*** YOUR CODE HERE ***"
+    def to_string(lnk):
+        if (lnk is Link.empty):
+            return empty_repr
+        else:
+            return front + str(lnk.first) + mid + to_string(lnk.rest) + back
+    return to_string
 
 # Trees
 def tree_map(fn, t):
@@ -67,6 +80,10 @@ def tree_map(fn, t):
         8
     """
     "*** YOUR CODE HERE ***"
+    if (t.is_leaf()):
+        return Tree(fn(t.label))
+    else:
+        return Tree(fn(t.label), [tree_map(fn, x) for x in t.branches])
 
 def long_paths(tree, n):
     """Return a list of all paths in tree with length at least n.
@@ -98,6 +115,14 @@ def long_paths(tree, n):
     [Link(0, Link(11, Link(12, Link(13, Link(14)))))]
     """
     "*** YOUR CODE HERE ***"
+    paths = []
+    if (tree.is_leaf() and n<=0):
+        paths.append(Link(tree.label))
+    else:
+        for b in tree.branches:
+            for path in long_paths(b, n-1):
+                paths.append(Link(tree.label, path))
+    return paths
 
 # Recursion/Tree Recursion
 def insert_into_all(item, nested_list):
@@ -122,6 +147,16 @@ def subseqs(s):
     [[]]
     """
     "*** YOUR CODE HERE ***"
+    seq = [[]]
+    if (s):
+        for elem in s:
+            for sub in subseqs(s[1:]):
+                if (sub==[] or elem<sub[0]):
+                    seq.append([elem]+sub)
+    return seq
+    
+    
+    
 
 def inc_subseqs(s):
     """Assuming that S is a list, return a nested list of all subsequences
@@ -137,7 +172,7 @@ def inc_subseqs(s):
     >>> sorted(seqs2)
     [[], [1], [1], [1, 1], [1, 1, 2], [1, 2], [1, 2], [2]]
     """
-    def subseq_helper(s, prev):
+    """def subseq_helper(s, prev):
         if not s:
             return ____________________
         elif s[0] < prev:
@@ -146,7 +181,15 @@ def inc_subseqs(s):
             a = ______________________
             b = ______________________
             return insert_into_all(________, ______________) + ________________
-    return subseq_helper(____, ____)
+    return subseq_helper(____, ____)"""
+    seq = [[]]
+    if (s):
+        for elem in s:
+            for sub in inc_subseqs(s[1:]):
+                if (sub==[] or elem<sub[0]):
+                    seq.append([elem]+sub)
+    return seq
+
 
 def num_trees(n):
     """How many full binary trees have exactly n leaves? E.g.,
