@@ -110,6 +110,10 @@ class Name(Expr):
         Exception raised!
         """
         "*** YOUR CODE HERE ***"
+        if (str(self) in env):
+            return env[str(self)]
+        else:
+            raise NameError()
 
     def __str__(self):
         return self.string
@@ -176,6 +180,9 @@ class CallExpr(Expr):
         Number(14)
         """
         "*** YOUR CODE HERE ***"
+        operator = self.operator.eval(env)
+        operands = [ x.eval(env) for x in self.operands]
+        return operator.apply(operands)
 
     def __str__(self):
         function = str(self.operator)
