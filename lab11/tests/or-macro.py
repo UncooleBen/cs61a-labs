@@ -19,29 +19,26 @@ test = {
         {
           'code': r"""
           scm> (or-macro (/ 1 0) #t)
-          c6d536c5acab2b28e563f34c64535296
-          # locked
+          SchemeError
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           scm> (or-macro #t (/ 1 0))
-          811dacf2a8c491d71193b389f2e6d3ab
-          # locked
+          #t
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
           scm> (or-macro #f (/ 1 0))
-          c6d536c5acab2b28e563f34c64535296
-          # locked
+          SchemeError
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""
